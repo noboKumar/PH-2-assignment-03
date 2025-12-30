@@ -69,3 +69,6 @@ where
         where
             v.vehicle_id = booked_vehicle_id
     )
+
+-- 3. Retrieve all available vehicles of a specific type (e.g. cars).
+select * from vehicles where availability_status = 'available' and vehicle_type = 'car'
