@@ -21,3 +21,20 @@ CREATE TABLE IF NOT EXISTS vehicles (
         )
     )
 );
+
+CREATE TABLE IF NOT EXISTS bookings (
+    booking_id SERIAL PRIMARY KEY,
+    booked_user INT REFERENCES users (user_id) ON DELETE CASCADE,
+    booked_vehicle INT REFERENCES vehicles (vehicle_id) ON DELETE CASCADE,
+    start_date DATE,
+    end_date DATE,
+    booking_status VARCHAR(20) NOT NULL CHECK (
+        booking_status IN (
+            'pending',
+            'confirmed',
+            'completed',
+            'cancelled'
+        )
+    ),
+    total_price NUMERIC(10, 2) NOT NULL
+);
