@@ -70,5 +70,15 @@ where
             v.vehicle_id = booked_vehicle_id
     )
 
--- 3. Retrieve all available vehicles of a specific type (e.g. cars).
+-- 3. Retrieve all available vehicles of a specific type
 select * from vehicles where availability_status = 'available' and vehicle_type = 'car'
+
+-- Find the total number of bookings for each vehicle and display only those vehicles that have more than 2 bookings.
+select
+  vehicle_name,
+  count(*) as total_bookings 
+from
+  bookings as b
+  join vehicles as v on b.booked_vehicle_id = v.vehicle_id
+group by vehicle_name
+having count(*) > 2;
