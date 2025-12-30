@@ -59,3 +59,13 @@ from
     join users as u on b.booked_user_id = u.user_id
     join vehicles as v on b.booked_vehicle_id = v.vehicle_id
 
+-- Find all vehicles that have never been booked.
+select *
+from vehicles as v
+where
+    NOT EXISTS (
+        select booked_vehicle_id
+        from bookings as b
+        where
+            v.vehicle_id = booked_vehicle_id
+    )
