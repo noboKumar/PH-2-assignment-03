@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS bookings (
     booked_vehicle_id INT REFERENCES vehicles (vehicle_id) ON DELETE CASCADE,
     start_date DATE,
     end_date DATE,
-    booking_status VARCHAR(20) NOT NULL CHECK (
-        booking_status IN (
+    status VARCHAR(20) NOT NULL CHECK (
+        status IN (
             'pending',
             'confirmed',
             'completed',
